@@ -1,0 +1,39 @@
+.renderOptions {
+  display: flex;
+  border-bottom: 1px solid rgb(227, 225, 225);
+
+  &__item {
+    padding: 10px 0px;
+    margin-right: 30px;
+    cursor: pointer;
+    color: rgb(99, 99, 99);
+    font-size: 18px;
+    position: relative;
+  }
+}
+
+.active {
+  color: rgb(0, 0, 0);
+}
+
+.active::after {
+  transition: width 150ms ease 0s;
+  content: '';
+  left: 0px;
+  width: 100%;
+  position: absolute;
+  height: 2px;
+  background: rgb(122, 7, 17);
+  bottom: 0px;
+}
+
+.noactive::after {
+  transition: width 150ms ease 0s;
+  content: '';
+  left: 0px;
+  width: 0px;
+  position: absolute;
+  height: 2px;
+  background: rgb(122, 7, 17);
+  bottom: 0px;
+}
