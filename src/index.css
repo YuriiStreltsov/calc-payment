@@ -30,3 +30,13 @@ body {
 input:focus {
   outline: none;
 }
+
+button {
+  border: none;
+  outline: none;
+}
+
+span {
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+}
