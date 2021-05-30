@@ -9,6 +9,7 @@ export default function Payment({
   sumCredit,
   resaultValue,
   rate,
+  textInputTerms,
 }) {
   return (
     <div className={style.payment}>
@@ -70,7 +71,9 @@ export default function Payment({
           ></input>
           <label htmlFor="totalPrice" className={style.rangeInputLabel}>
             {terms}
-            <span style={{ color: '#000000', marginLeft: 5 }}>$</span>
+            <span style={{ color: '#000000', marginLeft: 5 }}>
+              {textInputTerms}
+            </span>
           </label>
           <input
             type="range"

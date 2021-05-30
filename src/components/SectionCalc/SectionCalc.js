@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   TERMS: 1,
   MAX_TERMS: 30,
   RATE: 8.8,
+  TEXT_TERMS: 'год',
 };
 
 export default function SectionCalc() {
@@ -27,6 +28,9 @@ export default function SectionCalc() {
   const [sumCredit, setSumCredit] = useState();
   const [resaultValue, setResaultValue] = useState();
   const [activeElement, setActiveElement] = useState(0);
+  const [textInputTerms, setTextInputTerms] = useState(
+    INITIAL_STATE.TEXT_TERMS,
+  );
   useEffect(
     () => setStartPrice(Math.round(totalPrice / INITIAL_STATE.PARTS)),
     [totalPrice],
@@ -42,10 +46,20 @@ export default function SectionCalc() {
     const rateOfMonth = RATE / 100 / 12;
     const resaultValue =
       sumCredit *
-      ((rateOfMonth * Math.pow(1 + rateOfMonth, 12)) /
-        (Math.pow(1 + rateOfMonth, 12) - 1));
+      ((rateOfMonth * Math.pow(1 + rateOfMonth, terms * 12)) /
+        (Math.pow(1 + rateOfMonth, terms * 12) - 1));
     setResaultValue(Math.floor(resaultValue));
   }, [terms, sumCredit]);
+
+  useEffect(() => {
+    if (Number(terms) === 1) {
+      setTextInputTerms('год');
+    } else if (Number(terms) > 1 && terms <= 4) {
+      setTextInputTerms('года');
+    } else {
+      setTextInputTerms('лет');
+    }
+  }, [terms]);
 
   const handleOnChange = event => {
     const { name, value } = event.target;
@@ -70,7 +84,7 @@ export default function SectionCalc() {
         break;
       case 'terms':
         if (Number(value) || Number(value) === 0) {
-          setTerms(value);
+          setTerms(Number(value));
         }
         if (Number(value) > INITIAL_STATE.MAX_TERMS) {
           setTerms(INITIAL_STATE.MAX_TERMS);
@@ -106,7 +120,7 @@ export default function SectionCalc() {
           setTerms(INITIAL_STATE.TERMS);
           break;
         }
-        setTerms(value);
+        setTerms(Number(value));
         break;
 
       default:
@@ -115,7 +129,6 @@ export default function SectionCalc() {
   };
 
   const handleClickElement = index => {
-    console.log(index);
     setActiveElement(index);
   };
 
@@ -137,6 +150,7 @@ export default function SectionCalc() {
           sumCredit={sumCredit}
           resaultValue={resaultValue}
           rate={INITIAL_STATE.RATE}
+          textInputTerms={textInputTerms}
         />
       </Container>
     </div>

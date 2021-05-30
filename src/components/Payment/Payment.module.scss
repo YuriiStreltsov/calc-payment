@@ -17,7 +17,7 @@
   height: 54px;
   box-sizing: border-box;
   border-top-right-radius: 5px;
-  box-shadow: rgba(59, 42, 16, 0.3) 0px 1px 5px 0.1px;
+  box-shadow: rgba(32, 22, 0, 0.3) 0px 1px 5px 0.1px;
   border-top-left-radius: 5px;
   padding: 0px 20px;
   font-size: 20px;
@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   border-top-right-radius: 5px;
-  box-shadow: rgba(32, 22, 0, 30%) 0px 1px 5px 0.1px;
+  box-shadow: rgba(32, 22, 0, 0.3) 0px 1px 5px 0.1px;
   border-top-left-radius: 5px;
   padding: 0px 20px;
   font-size: 20px;
@@ -50,9 +50,9 @@ input[type='range'] {
   width: 100%;
   background: transparent;
   position: absolute;
-  bottom: -2px;
+  bottom: 0px;
   z-index: 15;
-  left: -2px;
+  left: 0px;
   right: 0px;
 }
 
@@ -80,7 +80,7 @@ input[type='range']::-webkit-slider-runnable-track {
   border-radius: 5px;
   min-width: 280px;
   margin-top: 20px;
-  box-shadow: rgba(77, 76, 76, 0.3) 0px 1px 5px 0.1px;
+  box-shadow: rgba(32, 22, 0, 0.3) 0px 1px 5px 0.1px;
 }
 
 .total {
