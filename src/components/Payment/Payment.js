@@ -7,6 +7,7 @@ export default function Payment({
   parts,
   handleOnChange,
   handleOnBlur,
+  handleClickButton,
   sumCredit,
   resaultValue,
   rate,
@@ -107,9 +108,21 @@ export default function Payment({
         <p className={style.title}>Наше предложение</p>
         <span className={style.desc}>Примерная стоимость объекта</span>
         <div className={style.result}>
-          <button className={style.buttonCalc}>-</button>
+          <button
+            name="minusTerms"
+            className={style.buttonCalc}
+            onClick={handleClickButton}
+          >
+            -
+          </button>
           <span className={style.value}>{`${resaultValue} $`}</span>
-          <button className={style.buttonCalc}>+</button>
+          <button
+            name="plusTerms"
+            className={style.buttonCalc}
+            onClick={handleClickButton}
+          >
+            +
+          </button>
         </div>
 
         <div className={style.total}>

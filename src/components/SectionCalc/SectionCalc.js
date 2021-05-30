@@ -123,7 +123,7 @@ export default function SectionCalc() {
         setStartPrice(value);
         break;
       case 'terms':
-        if (value === '') {
+        if (Number(value) <= 0) {
           setTerms(INITIAL_STATE.TERMS);
           break;
         }
@@ -137,6 +137,24 @@ export default function SectionCalc() {
 
   const handleClickElement = index => {
     setActiveElement(index);
+  };
+
+  const handleClickButton = event => {
+    const { name } = event.target;
+    const { TERMS } = INITIAL_STATE;
+    const { MAX_TERMS } = INPUT_RANGE_PARAMS;
+    switch (name) {
+      case 'minusTerms':
+        if (terms < MAX_TERMS) setTerms(terms + 1);
+
+        break;
+      case 'plusTerms':
+        if (terms > TERMS) setTerms(terms - 1);
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (
@@ -154,6 +172,7 @@ export default function SectionCalc() {
           terms={terms}
           handleOnChange={handleOnChange}
           handleOnBlur={handleOnBlur}
+          handleClickButton={handleClickButton}
           sumCredit={sumCredit}
           resaultValue={resaultValue}
           rate={INITIAL_STATE.RATE}

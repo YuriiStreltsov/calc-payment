@@ -42,6 +42,10 @@
   position: absolute;
   bottom: 0px;
   z-index: 2;
+
+  & span {
+    font-size: 20px;
+  }
 }
 
 input[type='range'] {
@@ -86,6 +90,11 @@ input[type='range']::-webkit-slider-runnable-track {
 .total {
   display: flex;
   justify-content: space-between;
+  & p {
+    font-size: 16px;
+    text-align: left;
+    color: rgb(99, 99, 99);
+  }
 }
 
 .title {
@@ -112,7 +121,7 @@ input[type='range']::-webkit-slider-runnable-track {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(32, 22, 0, 30%) 0px 1px 5px 0.1px;
+  box-shadow: rgba(32, 22, 0, 0.3) 0px 1px 5px 0.1px;
   background-color: rgb(255, 255, 255);
   color: rgb(122, 7, 17);
 }
