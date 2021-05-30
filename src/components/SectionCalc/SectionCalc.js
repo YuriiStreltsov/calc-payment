@@ -11,12 +11,19 @@ const ITEMS_OPTIONS = ['Расчет платежа', 'Расчет стоимо
 
 const INITIAL_STATE = {
   TOTAL_PRICE: 3000,
-  MAX_PRICE: 1000000,
   PARTS: 3,
   TERMS: 1,
-  MAX_TERMS: 30,
   RATE: 8.8,
   TEXT_TERMS: 'год',
+};
+
+const INPUT_RANGE_PARAMS = {
+  MIN_PRICE: 3000,
+  MAX_PRICE: 1000000,
+  MAX_TERMS: 30,
+  STEP_TOTAL_PRICE: 500,
+  STEP_START_PRICE: 500,
+  STEP_TERMS: 1,
 };
 
 export default function SectionCalc() {
@@ -68,16 +75,16 @@ export default function SectionCalc() {
         if (Number(value) || Number(value) === 0) {
           setTotalPrice(value);
         }
-        if (Number(value) > INITIAL_STATE.MAX_PRICE) {
-          setTotalPrice(INITIAL_STATE.MAX_PRICE);
+        if (Number(value) > INPUT_RANGE_PARAMS.MAX_PRICE) {
+          setTotalPrice(INPUT_RANGE_PARAMS.MAX_PRICE);
           break;
         }
         break;
       case 'startPrice':
         if (Number(value) || Number(value) === 0) {
-          setStartPrice(value);
+          setStartPrice(Number(value));
         }
-        if (value > totalPrice) {
+        if (Number(value) > Number(totalPrice)) {
           setStartPrice(totalPrice);
           break;
         }
@@ -86,8 +93,8 @@ export default function SectionCalc() {
         if (Number(value) || Number(value) === 0) {
           setTerms(Number(value));
         }
-        if (Number(value) > INITIAL_STATE.MAX_TERMS) {
-          setTerms(INITIAL_STATE.MAX_TERMS);
+        if (Number(value) > INPUT_RANGE_PARAMS.MAX_TERMS) {
+          setTerms(INPUT_RANGE_PARAMS.MAX_TERMS);
           break;
         }
         break;
@@ -151,6 +158,8 @@ export default function SectionCalc() {
           resaultValue={resaultValue}
           rate={INITIAL_STATE.RATE}
           textInputTerms={textInputTerms}
+          inputRange={INPUT_RANGE_PARAMS}
+          parts={INITIAL_STATE.PARTS}
         />
       </Container>
     </div>

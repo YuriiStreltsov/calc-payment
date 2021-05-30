@@ -4,12 +4,14 @@ export default function Payment({
   totalPrice,
   startPrice,
   terms,
+  parts,
   handleOnChange,
   handleOnBlur,
   sumCredit,
   resaultValue,
   rate,
   textInputTerms,
+  inputRange,
 }) {
   return (
     <div className={style.payment}>
@@ -32,7 +34,13 @@ export default function Payment({
           <input
             type="range"
             id="totalPrice"
+            name="totalPrice"
             className={style.rangeInputRange}
+            max={inputRange.MAX_PRICE}
+            min={inputRange.MIN_PRICE}
+            step={inputRange.STEP_TOTAL_PRICE}
+            onChange={handleOnChange}
+            value={totalPrice}
           ></input>
         </div>
 
@@ -47,14 +55,20 @@ export default function Payment({
             value={startPrice}
             name="startPrice"
           ></input>
-          <label htmlFor="totalPrice" className={style.rangeInputLabel}>
+          <label htmlFor="startPrice" className={style.rangeInputLabel}>
             {startPrice}
             <span style={{ color: '#000000', marginLeft: 5 }}>$</span>
           </label>
           <input
             type="range"
-            id="totalPrice"
+            id="startPrice"
             className={style.rangeInputRange}
+            onChange={handleOnChange}
+            name="startPrice"
+            max={totalPrice}
+            min={Math.floor(totalPrice / parts)}
+            step={inputRange.STEP_START_PRICE}
+            value={startPrice}
           ></input>
         </div>
 
@@ -69,7 +83,7 @@ export default function Payment({
             value={terms}
             name="terms"
           ></input>
-          <label htmlFor="totalPrice" className={style.rangeInputLabel}>
+          <label htmlFor="terms" className={style.rangeInputLabel}>
             {terms}
             <span style={{ color: '#000000', marginLeft: 5 }}>
               {textInputTerms}
@@ -77,8 +91,14 @@ export default function Payment({
           </label>
           <input
             type="range"
-            id="totalPrice"
+            id="terms"
             className={style.rangeInputRange}
+            onChange={handleOnChange}
+            name="terms"
+            value={terms}
+            max={inputRange.MAX_TERMS}
+            min={1}
+            step={inputRange.STEP_TERMS}
           ></input>
         </div>
       </div>
